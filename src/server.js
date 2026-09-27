@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 // middleware
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -16,13 +17,19 @@ const app = express();
 
 
 // code
-dotenv.config();
-app.use(express.json());
 
 // secure
 app.use(cors({
-	origin: ['http://localhost:8080']
+	origin: [
+		'http://localhost:8080',
+		'https://tomoh-frontend.vercel.app'
+	],
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
+	credentials: true
 }));
+
+app.use(express.json());
 // limitrs
 const authLimiter = limiter({
 	windowMs: 30 * 60 * 1000,
