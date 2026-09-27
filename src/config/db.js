@@ -6,7 +6,7 @@ const { Pool } = pg;
 
 export const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
-	max: 20
+	ssl: { rejectUnauthorized: false }
 });
 
 pool.on('connect', () => {
