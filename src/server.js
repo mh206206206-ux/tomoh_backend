@@ -17,6 +17,7 @@ const app = express();
 
 
 // code
+app.set('trust proxy', 1);
 
 // secure
 app.use(cors({
