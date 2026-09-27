@@ -9,11 +9,10 @@ export const pool = new Pool({
   ssl: {
     rejectUnauthorized: false // مطلوب لتشغيل SSL مع Neon
   },
-  // هنا نحدد الـ Schema المطلوبة لتكون هي المسار الافتراضي
-  options: '-c search_path=tomoh'
 });
 
-pool.on('connect', () => {
+pool.on('connect', async () => {
+	await pool.query('set search_path to tomoh');
 	console.log('connected to postgre SQL');
 });
 
