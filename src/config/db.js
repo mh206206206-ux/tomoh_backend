@@ -10,7 +10,8 @@ export const pool = new Pool({
 });
 
 pool.on('connect', () => {
-	console.log('connected to postgre SQL')
+	client.query('SET search_path TO tomoh');
+	console.log('connected to postgre SQL');
 });
 
 pool.on('error', (err) => {
