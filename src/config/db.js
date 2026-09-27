@@ -11,11 +11,6 @@ export const pool = new Pool({
   },
 });
 
-pool.on('connect', async () => {
-	await pool.query('set search_path to tomoh');
-	console.log('connected to postgre SQL');
-});
-
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
